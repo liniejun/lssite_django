@@ -11,7 +11,11 @@ class Question(models.Model):
         return self.question_text
 
     def was_pulished_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+        now = timezone.now()
+        return now - datetime.timedelta(days=1) <= self.pub_date <= now
+    was_pulished_recently.admin_order_field = 'pub_date'
+    was_pulished_recently.bolean = True
+    was_pulished_recently.short_description = 'Published recently?'
 
 # 外键关系 外键写在'多'的一方  一对一 多对一  多对多
 class Choice(models.Model):

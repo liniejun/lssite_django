@@ -16,11 +16,22 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls import include
+import tutorial.views
+from login import views
 
-from tutorial import views
-
+# 登录界面路由设计
+# /home  home.html  主页
+# /login login.html 登录
+# /logout 无需页面 登出
+# /register register.html 注册
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('index/',views.index),
+    path('index/',tutorial.views.index),
     path('polls/', include('polls.urls')),
+    path('home/', views.home),
+    path('login/', views.login),
+    path('register/', views.register),
+    path('logout/', views.logout),
+    path('captcha/', include('captcha.urls')),
+    path('confirm/', views.user_confirm),
 ]

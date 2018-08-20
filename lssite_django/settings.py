@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',   #静态文件管理框架
     'tutorial',
     'polls',
+    'login',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -116,7 +118,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -136,3 +139,17 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+# 配置邮件
+# 第一行指定发送邮件的后端模块，大多数情况下照抄！
+# 第二行，不用说，发送方的smtp服务器地址，建议使用新浪家的；
+# 第三行，smtp服务端口，默认为25；
+# 第四行，你在发送服务器的用户名；
+# 第五行，对应用户的密码。
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.sina.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'xxx@sina.com'
+EMAIL_HOST_PASSWORD = 'xxxxxxxxxxx'
+
+# 注册有效期天数
+CONFIRM_DAYS = 7
